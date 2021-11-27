@@ -20,13 +20,36 @@ code {
   height: 100vh;
   width: 100vw;
   border: 1px solid #333;
+  display: flex;
+  flex-direction: column;
 }
 
 .top-bar {
   height: 100px;
-  width: 100%;
   padding: 0 30px;
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
   border-bottom: 1px solid #333;
+}
+
+.files-explorer {
+  display: flex;
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+/* Side bar --------------------------------------------------------> */
+.side-bar-container {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 300px;
+  overflow-y: auto;
+  border-right: 1px solid #333;
+}
+
+.side-bar {
+}
+
+.files-explorer-content {
 }
