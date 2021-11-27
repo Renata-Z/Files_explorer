@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import React, { useEffect, useState } from 'react';
 import { FilesExplorerContent } from '../Components/FilesExplorerContent';
 import { SideBar } from '../Components/SideBar';
+import { caseInsensitiveCompare } from '../utils/strings';
 
 type FileType = 'doc' | 'image' | 'folder';
 
@@ -37,9 +38,20 @@ export const FilesExplorer = () => {
     return <p>LOADING............</p>;
   }
 
+  const sortedFilesFolders = () => {
+    // naudoti .reduce ir rekursiškai susortinti visą medį!
+    const folders = filesFolders
+      .filter((x) => x.type === 'folder')
+      .sort((a, b) => caseInsensitiveCompare(a.name, b.name));
+    const files = filesFolders
+      .filter((x) => x.type !== 'folder')
+      .sort((a, b) => caseInsensitiveCompare(a.name, b.name));
+    return [...folders, ...files];
+  };
+
   return (
     <div className="files-explorer">
-      <SideBar filesFolders={filesFolders} />
+      <SideBar filesFolders={sortedFilesFolders()} />
       <FilesExplorerContent />
     </div>
   );
