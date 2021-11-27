@@ -1,3 +1,5 @@
+import { FilesExplorer } from './Pages/FilesExplorer';
+
 export const App = function App() {
-  return <h1>Corti Frontend Home Assignment</h1>;
+  return <FilesExplorer />;
 };
