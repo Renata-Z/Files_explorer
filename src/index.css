@@ -58,4 +58,40 @@ code {
 }
 
 .files-explorer-content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  padding: 40px;
+}
+
+.file-button {
+  margin: 10px;
+  border: none;
+  background-color: white;
+}
+
+.file-icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.folder-icon {
+  width: 90px;
+  height: 50px;
+  margin: 0 auto;
+  display: flex;
+  background-color: #eaeaea;
+}
+
+.file-name {
+  width: 100px;
+  text-align: start;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
