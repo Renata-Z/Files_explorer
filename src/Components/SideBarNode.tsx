@@ -18,19 +18,15 @@ export const SideBarNode = ({
   onItemClick,
 }: Props) => {
   return (
-    <>
-      <div
-        className="tree-node"
-        style={{
-          paddingLeft: `${level * 15}px`,
-        }}
-        onClick={() => onItemClick(id)}
-      >
-        {expandable && (
-          <span className={expanded ? 'rotate' : ''}>&#9947;</span>
-        )}
-        <span style={{ paddingLeft: '5px' }}>{name}</span>
-      </div>
-    </>
+    <div
+      className="tree-node"
+      style={{
+        paddingLeft: `${level * 15}px`,
+      }}
+      onClick={() => onItemClick(id)}
+    >
+      {expandable && <span className={expanded ? 'rotate' : ''}>&#9947;</span>}
+      <span style={{ paddingLeft: '5px' }}>{name}</span>
+    </div>
   );
 };
