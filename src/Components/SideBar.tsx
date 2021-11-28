@@ -1,27 +1,21 @@
 import React from 'react';
-import { FileModel } from '../Pages/FilesExplorer';
-import { SideBarItem } from './SideBarItem';
+import { FileModel, KeyStringValueBoolean } from '../Pages/FilesExplorer';
+import { SideBarTree } from './SideBarTree';
 
 interface Props {
   files: FileModel[];
+  expandedFiles: KeyStringValueBoolean;
+  onItemClick: (id: string) => void;
 }
 
-export const SideBar = ({ files }: Props) => {
-  console.log(files);
+export const SideBar = ({ files, expandedFiles, onItemClick }: Props) => {
   return (
     <div className="side-bar-container">
-      {files.map((x) => {
-        return (
-          <SideBarItem
-            key={x.id}
-            name={x.name}
-            children={x.children}
-            expandable={x.type === 'folder'}
-            expanded={false}
-            level={1}
-          />
-        );
-      })}
+      <SideBarTree
+        files={files}
+        expandedFiles={expandedFiles}
+        onItemClick={onItemClick}
+      />
     </div>
   );
 };

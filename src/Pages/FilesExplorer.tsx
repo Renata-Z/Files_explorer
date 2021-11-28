@@ -5,14 +5,27 @@ import { SideBar } from '../Components/SideBar';
 import { caseInsensitiveCompare } from '../utils/strings';
 
 type FileType = 'doc' | 'image' | 'folder';
+export interface FileModel {
+  id: string;
+  name: string;
+  type: FileType;
+  children?: FileModel[];
+}
+
+interface FilesDto {
+  response: FileModel[];
+}
+
+export interface KeyStringValueBoolean {
+  [key: string]: boolean;
+}
 
 const sortFiles = (files: FileModel[]): FileModel[] =>
   [...files]
     .sort((a, b) => caseInsensitiveCompare(a.name, b.name))
     .map((x) => ({
       ...x,
-      children:
-        x.children && x.children.length > 0 ? sortFiles(x.children) : [],
+      children: x.children ? sortFiles(x.children) : undefined,
     }));
 
 const groupFilesFolders = (files: FileModel[]): FileModel[] => {
@@ -26,19 +39,9 @@ const groupFilesFolders = (files: FileModel[]): FileModel[] => {
   }));
 };
 
-export interface FileModel {
-  id: string;
-  name: string;
-  type: FileType;
-  children?: FileModel[];
-}
-
-interface FilesDto {
-  response: FileModel[];
-}
-
 export const FilesExplorer = () => {
   const [files, setFiles] = useState<FileModel[] | null>(null);
+  const [expandedFiles, setExpandedFiles] = useState<KeyStringValueBoolean>({});
 
   useEffect(() => {
     const url = '/api/v1/tree';
@@ -58,9 +61,17 @@ export const FilesExplorer = () => {
 
   const groupedSortedFiles = groupFilesFolders(sortFiles(files));
 
+  const handleItemClick = (id: string) => {
+    setExpandedFiles((prevState) => ({ ...prevState, [id]: !prevState[id] }));
+  };
+
   return (
     <div className="files-explorer">
-      <SideBar files={groupedSortedFiles} />
+      <SideBar
+        files={groupedSortedFiles}
+        expandedFiles={expandedFiles}
+        onItemClick={handleItemClick}
+      />
       <FilesExplorerContent />
     </div>
   );

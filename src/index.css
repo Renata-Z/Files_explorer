@@ -44,11 +44,12 @@ code {
   display: flex;
   flex-direction: column;
   flex: 0 0 300px;
-  overflow-y: auto;
+  overflow: auto;
   border-right: 1px solid #333;
 }
 
-.side-bar {
+.tree-node {
+  padding: 8px;
 }
 
 .files-explorer-content {
