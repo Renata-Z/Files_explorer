@@ -9,7 +9,7 @@ interface Props {
   onItemClick: (id: string) => void;
 }
 
-export const SideBarItem = ({
+export const SideBarNode = ({
   id,
   name,
   level,
@@ -23,12 +23,13 @@ export const SideBarItem = ({
         className="tree-node"
         style={{
           paddingLeft: `${level * 15}px`,
-          color: expanded ? 'green' : 'black',
         }}
         onClick={() => onItemClick(id)}
       >
-        {expandable && <span>&#9947;</span>}
-        <span>{name}</span>
+        {expandable && (
+          <span className={expanded ? 'rotate' : ''}>&#9947;</span>
+        )}
+        <span style={{ paddingLeft: '5px' }}>{name}</span>
       </div>
     </>
   );

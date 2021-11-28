@@ -1,6 +1,6 @@
 import React from 'react';
 import { FileModel, KeyStringValueBoolean } from '../Pages/FilesExplorer';
-import { SideBarItem } from './SideBarItem';
+import { SideBarNode } from './SideBarNode';
 
 interface Props {
   files: FileModel[] | undefined;
@@ -22,7 +22,7 @@ export const SideBarTree = ({
   const renderChildren = (children: FileModel[], nextLevel: number) => {
     if (children.length === 0) {
       return (
-        <SideBarItem
+        <SideBarNode
           id={`${nextLevel}-empty`}
           name="No files"
           level={nextLevel}
@@ -44,7 +44,7 @@ export const SideBarTree = ({
     <>
       {files.map((x) => (
         <React.Fragment key={x.id}>
-          <SideBarItem
+          <SideBarNode
             id={x.id}
             name={x.name}
             level={level}

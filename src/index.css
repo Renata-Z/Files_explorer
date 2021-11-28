@@ -52,5 +52,10 @@ code {
   padding: 8px;
 }
 
+.rotate {
+  display: inline-block;
+  transform: rotate(-90deg);
+}
+
 .files-explorer-content {
 }
