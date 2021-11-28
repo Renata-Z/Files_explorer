@@ -6,6 +6,26 @@ import { caseInsensitiveCompare } from '../utils/strings';
 
 type FileType = 'doc' | 'image' | 'folder';
 
+const sortFiles = (files: FileModel[]): FileModel[] =>
+  [...files]
+    .sort((a, b) => caseInsensitiveCompare(a.name, b.name))
+    .map((x) => ({
+      ...x,
+      children:
+        x.children && x.children.length > 0 ? sortFiles(x.children) : [],
+    }));
+
+const groupFilesFolders = (files: FileModel[]): FileModel[] => {
+  const foldersGroup = files.filter((x) => x.type === 'folder');
+  const filesGroup = files.filter((x) => x.type !== 'folder');
+
+  return [...foldersGroup, ...filesGroup].map((x) => ({
+    ...x,
+    children:
+      x.children && x.children.length ? groupFilesFolders(x.children) : [],
+  }));
+};
+
 export interface FileModel {
   id: string;
   name: string;
@@ -36,20 +56,11 @@ export const FilesExplorer = () => {
     return <p>LOADING............</p>;
   }
 
-  const sortFilesFolders = () => {
-    // naudoti .reduce ir rekursiškai susortinti visą medį!
-    const foldersGroup = files
-      .filter((x) => x.type === 'folder')
-      .sort((a, b) => caseInsensitiveCompare(a.name, b.name));
-    const filesGroup = files
-      .filter((x) => x.type !== 'folder')
-      .sort((a, b) => caseInsensitiveCompare(a.name, b.name));
-    return [...foldersGroup, ...filesGroup];
-  };
+  const groupedSortedFiles = groupFilesFolders(sortFiles(files));
 
   return (
     <div className="files-explorer">
-      <SideBar files={sortFilesFolders()} />
+      <SideBar files={groupedSortedFiles} />
       <FilesExplorerContent />
     </div>
   );
