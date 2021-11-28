@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileModel, KeyStringValueBoolean } from '../Pages/FilesExplorer';
+import { FileModel, KeyStringValueBoolean } from '../model/filesGrouping';
 import { SideBarNode } from './SideBarNode';
 
 interface Props {
@@ -54,6 +54,7 @@ export const SideBarTree = ({
           />
 
           {expandedFiles[x.id] &&
+            x.type === 'folder' &&
             x.children &&
             renderChildren(x.children, level + 1)}
         </React.Fragment>

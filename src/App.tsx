@@ -1,5 +1,5 @@
-import { TopBar } from './Components/TopBar';
-import { FilesExplorer } from './Pages/FilesExplorer';
+import { TopBar } from './Pages/FilesExplorer/Components/TopBar';
+import { FilesExplorer } from './Pages/FilesExplorer/FilesExplorer';
 
 export const App = function App() {
   return (

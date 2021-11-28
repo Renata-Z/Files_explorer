@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileModel, KeyStringValueBoolean } from '../Pages/FilesExplorer';
+import { FileModel, KeyStringValueBoolean } from '../model/filesGrouping';
 import { SideBarTree } from './SideBarTree';
 
 interface Props {

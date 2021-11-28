@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileType } from '../Pages/FilesExplorer';
+import { FileType } from '../model/filesGrouping';
 
 interface Props {
   name: string;

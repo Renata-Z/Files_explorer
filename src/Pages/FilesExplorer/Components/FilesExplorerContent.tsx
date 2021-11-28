@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileModel } from '../Pages/FilesExplorer';
+import { FileModel } from '../model/filesGrouping';
 import { FilePreview } from './FilePreview';
 
 interface Props {
