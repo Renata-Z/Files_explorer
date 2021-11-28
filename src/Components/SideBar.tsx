@@ -1,16 +1,16 @@
 import React from 'react';
-import { FileFolderModel } from '../Pages/FilesExplorer';
+import { FileModel } from '../Pages/FilesExplorer';
 import { SideBarItem } from './SideBarItem';
 
 interface Props {
-  filesFolders: FileFolderModel[];
+  files: FileModel[];
 }
 
-export const SideBar = ({ filesFolders }: Props) => {
-  console.log(filesFolders);
+export const SideBar = ({ files }: Props) => {
+  console.log(files);
   return (
     <div className="side-bar-container">
-      {filesFolders.map((x) => {
+      {files.map((x) => {
         return (
           <SideBarItem
             key={x.id}

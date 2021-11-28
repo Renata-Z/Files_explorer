@@ -1,9 +1,9 @@
 import React from 'react';
-import { FileFolderModel } from '../Pages/FilesExplorer';
+import { FileModel } from '../Pages/FilesExplorer';
 
 interface Props {
   name: string;
-  children?: FileFolderModel[];
+  children?: FileModel[];
   expandable: boolean;
   expanded: boolean;
   level: number;
