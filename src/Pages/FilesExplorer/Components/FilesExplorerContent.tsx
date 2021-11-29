@@ -25,6 +25,7 @@ export const FilesExplorerContent = ({ file, onFileClick }: Props) => {
   return (
     <div className="files-explorer-content">
       {file.children?.length === 0 && <p>This folder is empty</p>}
+
       {file.children?.map((x) => (
         <button
           key={x.id}

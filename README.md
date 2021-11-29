@@ -83,6 +83,22 @@ Api will be available from your client on the same port on `/api/v1/tree`
 
 ## Your notes
 
-- pacakge.json version should be '2.0.0' instead of 2.0 , because the latter is invalid. https://github.com/npm/npm/issues/7445
-- Error to run the server on Windows, because new URL() method creates a path format which is nor suitable for Windows. https://github.com/nodejs/node/issues/37845
-  ...
+Encountered errors:
+
+- there was as error trying to run frontend - in pacakge.json file version should be '2.0.0' instead of '2.0' , because the latter format is invalid.
+- Error when trying to run the server on Windows, because new URL() method creates a path format which is not suitable for Windows.
+
+What could be improved while developing this app further:
+
+- Memoize flattened files, so that it doesn't recompute after each re-render.
+- Implement Prettier / Eslint;
+- At the moment, not much styling was needed, but if the app would be expanding, implementing implementing CSS modules or /and CSS preprocessors would help to keep code more readable.
+- Implement loading and error handling;
+- Keep information about active file/folder in React context, especialy if the app expanded.
+- Implement generic pipe function.
+- Side bar styling - the space for the name of the item should be limited length whith limited number of lines, if the name is longer - tooltip is shown and the name's overflow is hidden ("long nam...");
+- extract code to separate FolderPreview component from FilesExplorerContent component - to make this component more readable;
+
+The task was quite big in scope. I worked with tree data structures before so manipulating such data was not very difficult but it required to be really focused and it was more difficult when working during additional hours to my everyday work. The tasks were well explained.
+
+I have developed and tested first 3 user stories. I spent 9 hours. As you mentioned, I should not spend more than 1 day for the task so I haven't developed the 4th user story, I know how it should be implemented, but additional time would be needed to develop and test it properly.
