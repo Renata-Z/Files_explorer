@@ -59,8 +59,8 @@ code {
 
 .files-explorer-content {
   display: flex;
-  flex: 1 1 auto;
   flex-wrap: wrap;
+  align-content: flex-start;
   padding: 40px;
 }
 
