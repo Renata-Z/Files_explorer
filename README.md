@@ -92,13 +92,12 @@ What could be improved while developing this app further:
 
 - Memoize flattened files, so that it doesn't recompute after each re-render.
 - Implement Prettier / Eslint;
-- At the moment, not much styling was needed, but if the app would be expanding, implementing implementing CSS modules or /and CSS preprocessors would help to keep code more readable.
+- At the moment, not much styling was needed, but if the app would be expanding, implementing CSS modules or /and CSS preprocessors would help to keep styles more readable.
 - Implement loading and error handling;
-- Keep information about active file/folder in React context, especialy if the app expanded.
+- Keep information about active file/folder in React context, especialy if the app expands.
 - Implement generic pipe function.
 - Side bar styling - the space for the name of the item should be limited length whith limited number of lines, if the name is longer - tooltip is shown and the name's overflow is hidden ("long nam...");
-- extract code to separate FolderPreview component from FilesExplorerContent component - to make this component more readable;
 
-The task was quite big in scope. I worked with tree data structures before so manipulating such data was not very difficult but it required to be really focused and it was more difficult when working during additional hours to my everyday work. The tasks were well explained.
+The task was quite big in scope. I worked with tree data structures before so manipulating such data was not very difficult but it required to be really focused and it was more difficult when working during after-work hours. The tasks were well explained.
 
-I have developed and tested first 3 user stories. I spent 9 hours. As you mentioned, I should not spend more than 1 day for the task so I haven't developed the 4th user story, I know how it should be implemented, but additional time would be needed to develop and test it properly.
+I have developed and tested first 3 user stories. I haven't finished development of the 4th user story, additional time would be needed to debug it with real data (the computations work with mocked data, but not with the real data at the moment).

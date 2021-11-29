@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileType } from '../model/filesGrouping';
+import { FileType } from '../../model/filesGrouping';
 
 interface Props {
   name: string;
@@ -8,9 +8,9 @@ interface Props {
 
 export const FilePreview = ({ name, type }: Props) => {
   return (
-    <>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
       <p>name: {name}</p>
       <p>type: {type}</p>
-    </>
+    </div>
   );
 };

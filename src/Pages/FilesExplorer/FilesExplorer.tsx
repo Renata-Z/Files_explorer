@@ -1,9 +1,9 @@
 import axios, { AxiosResponse } from 'axios';
 import React, { useEffect, useState } from 'react';
-import { FilesExplorerContent } from './Components/FilesExplorerContent';
-import { SideBar } from './Components/SideBar';
+import { FilesExplorerMain } from './Components/FileExplorerMain/FilesExplorerMain';
+import { SideBar } from './Components/SideBar/SideBar';
 import { FileModel, FilesDto, groupedSortedFiles } from './model/filesGrouping';
-import { flattenFiles } from './model/flattening';
+import { flattenFiles, getParentFoldersPath } from './model/flattening';
 
 export const FilesExplorer = () => {
   const [files, setFiles] = useState<FileModel[] | null>(null);
@@ -11,6 +11,7 @@ export const FilesExplorer = () => {
     {}
   );
   const [activeFileId, setActiveFileId] = useState<string | null>(null);
+  const [path, setPath] = useState<string[] | null>(null);
 
   useEffect(() => {
     const url = '/api/v1/tree';
@@ -37,12 +38,69 @@ export const FilesExplorer = () => {
   };
 
   const handleItemClick = (id: string) => {
+    setPath(null);
     setExpandedFiles((prevState) => ({ ...prevState, [id]: !prevState[id] }));
     setActiveFileId(id);
   };
 
   const handleShowPath = (id: string) => {
-    console.log('Path will be implemented in the future', id);
+    const mockData: FileModel[] = [
+      {
+        id: '123',
+        name: 'A',
+        type: 'folder',
+        children: [
+          {
+            id: '123-1',
+            name: 'A-1',
+            type: 'folder',
+            children: [
+              {
+                id: '123-1-1',
+                name: 'A-1-1',
+                type: 'folder',
+                children: [
+                  {
+                    id: '123-1-1-1',
+                    name: 'A-1-1-1',
+                    type: 'folder',
+                    children: [],
+                  },
+                  {
+                    id: '123-1-1-2',
+                    name: 'A-1-1-2',
+                    type: 'folder',
+                    children: [],
+                  },
+                ],
+              },
+            ],
+          },
+          { id: '123-2', name: 'A-2', type: 'folder', children: [] },
+        ],
+      },
+      {
+        id: '124',
+        name: 'B',
+        type: 'folder',
+        children: [
+          { id: '124-1', name: 'B-1', type: 'folder', children: [] },
+          { id: '124-2', name: 'B-2', type: 'doc' },
+        ],
+      },
+      {
+        id: '125',
+        name: 'C',
+        type: 'folder',
+        children: [
+          { id: '125-1', name: 'C-1', type: 'folder', children: [] },
+          { id: '125-2', name: 'C-2', type: 'image' },
+        ],
+      },
+    ];
+    const path = getParentFoldersPath(mockData, '123-1-1-2');
+    // const path = getParentPersonsPath(files, id);
+    setPath(path);
   };
 
   return (
@@ -52,8 +110,9 @@ export const FilesExplorer = () => {
         expandedFiles={expandedFiles}
         onItemClick={handleItemClick}
       />
-      <FilesExplorerContent
+      <FilesExplorerMain
         file={getContentFiles()}
+        path={path}
         onFileClick={handleShowPath}
       />
     </div>

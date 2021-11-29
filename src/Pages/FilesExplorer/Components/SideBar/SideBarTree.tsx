@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileModel } from '../model/filesGrouping';
+import { FileModel } from '../../model/filesGrouping';
 import { SideBarNode } from './SideBarNode';
 
 interface Props {
