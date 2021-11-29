@@ -30,7 +30,7 @@ export const FilesExplorerContent = ({ file, onFileClick }: Props) => {
         <button
           key={x.id}
           className="file-button"
-          onClick={() => onFileClick(file.id)}
+          onClick={() => onFileClick(x.id)}
         >
           {x.type === 'folder' ? (
             <div className="folder-icon" />
