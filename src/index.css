@@ -36,7 +36,7 @@ code {
 .files-explorer {
   display: flex;
   flex: 1 1 auto;
-  overflow-y: auto;
+  min-height: calc(100vh - 101px);
 }
 
 /* Side bar --------------------------------------------------------> */
@@ -48,6 +48,10 @@ code {
   border-right: 1px solid #333;
 }
 
+.side-bar-container > div {
+  padding: 5px;
+}
+
 .tree-node {
   padding: 8px;
 }
@@ -57,17 +61,23 @@ code {
   transform: rotate(-90deg);
 }
 
+/* MAIN AREA -------------------------------> */
 .files-explorer-content {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
   padding: 40px;
+  overflow-y: auto;
 }
 
 .file-button {
   margin: 10px;
   border: none;
-  background-color: white;
+  background-color: #fff;
+}
+
+.file-button:hover > div {
+  border: 2px solid #333;
 }
 
 .file-icon {

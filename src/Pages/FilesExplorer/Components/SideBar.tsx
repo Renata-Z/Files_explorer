@@ -1,10 +1,10 @@
 import React from 'react';
-import { FileModel, KeyStringValueBoolean } from '../model/filesGrouping';
+import { FileModel } from '../model/filesGrouping';
 import { SideBarTree } from './SideBarTree';
 
 interface Props {
   files: FileModel[];
-  expandedFiles: KeyStringValueBoolean;
+  expandedFiles: Record<string, boolean>;
   onItemClick: (id: string) => void;
 }
 

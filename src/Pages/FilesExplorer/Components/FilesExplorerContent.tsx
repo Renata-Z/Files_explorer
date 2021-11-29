@@ -3,29 +3,28 @@ import { FileModel } from '../model/filesGrouping';
 import { FilePreview } from './FilePreview';
 
 interface Props {
-  file: FileModel;
-  path: string | null;
+  file: FileModel | null;
   onFileClick: (id: string) => void;
 }
-export const FilesExplorerContent = ({ file, path, onFileClick }: Props) => {
-  if (!!path && file.type !== 'folder') {
-    return (
-      <div className="files-explorer-content">
-        <FilePreview name={file.name} type={file.type} />
-      </div>
-    );
+export const FilesExplorerContent = ({ file, onFileClick }: Props) => {
+  if (!file) {
+    return <div className="files-explorer-content">Welcome</div>;
   }
 
-  if (path) {
+  if (file.type !== 'folder') {
     return (
-      <div className="files-explorer-content">
-        <p>path: {path}</p>
+      <div
+        className="files-explorer-content"
+        style={{ flexDirection: 'column' }}
+      >
+        <FilePreview name={file.name} type={file.type} />
       </div>
     );
   }
 
   return (
     <div className="files-explorer-content">
+      {file.children?.length === 0 && <p>This folder is empty</p>}
       {file.children?.map((x) => (
         <button
           key={x.id}

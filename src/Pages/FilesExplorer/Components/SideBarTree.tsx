@@ -1,10 +1,10 @@
 import React from 'react';
-import { FileModel, KeyStringValueBoolean } from '../model/filesGrouping';
+import { FileModel } from '../model/filesGrouping';
 import { SideBarNode } from './SideBarNode';
 
 interface Props {
   files: FileModel[] | undefined;
-  expandedFiles: KeyStringValueBoolean;
+  expandedFiles: Record<string, boolean>;
   level?: number;
   onItemClick: (id: string) => void;
 }
@@ -41,7 +41,7 @@ export const SideBarTree = ({
   };
 
   return (
-    <>
+    <div>
       {files.map((x) => (
         <React.Fragment key={x.id}>
           <SideBarNode
@@ -59,6 +59,6 @@ export const SideBarTree = ({
             renderChildren(x.children, level + 1)}
         </React.Fragment>
       ))}
-    </>
+    </div>
   );
 };

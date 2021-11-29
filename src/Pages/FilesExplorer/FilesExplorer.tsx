@@ -2,18 +2,15 @@ import axios, { AxiosResponse } from 'axios';
 import React, { useEffect, useState } from 'react';
 import { FilesExplorerContent } from './Components/FilesExplorerContent';
 import { SideBar } from './Components/SideBar';
-import {
-  FileModel,
-  FilesDto,
-  groupedSortedFiles,
-  KeyStringValueBoolean,
-} from './model/filesGrouping';
+import { FileModel, FilesDto, groupedSortedFiles } from './model/filesGrouping';
+import { flattenFiles } from './model/flattening';
 
 export const FilesExplorer = () => {
   const [files, setFiles] = useState<FileModel[] | null>(null);
-  const [expandedFiles, setExpandedFiles] = useState<KeyStringValueBoolean>({});
-  const [activeFile, setActiveFile] = useState('');
-  const [path, setPath] = useState<string | null>(null);
+  const [expandedFiles, setExpandedFiles] = useState<Record<string, boolean>>(
+    {}
+  );
+  const [activeFileId, setActiveFileId] = useState<string | null>(null);
 
   useEffect(() => {
     const url = '/api/v1/tree';
@@ -31,13 +28,21 @@ export const FilesExplorer = () => {
     return <p>LOADING............</p>;
   }
 
+  const getContentFiles = () => {
+    if (!activeFileId) {
+      return null;
+    }
+    const flattenedFiles = flattenFiles(groupedSortedFiles(files), {});
+    return flattenedFiles[activeFileId];
+  };
+
   const handleItemClick = (id: string) => {
     setExpandedFiles((prevState) => ({ ...prevState, [id]: !prevState[id] }));
-    setActiveFile(id);
+    setActiveFileId(id);
   };
 
   const handleShowPath = (id: string) => {
-    console.log('path', id);
+    console.log('Path will be implemented in the future', id);
   };
 
   return (
@@ -48,8 +53,7 @@ export const FilesExplorer = () => {
         onItemClick={handleItemClick}
       />
       <FilesExplorerContent
-        file={groupedSortedFiles(files)[1]}
-        path={path}
+        file={getContentFiles()}
         onFileClick={handleShowPath}
       />
     </div>
