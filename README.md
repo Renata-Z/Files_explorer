@@ -100,4 +100,4 @@ What could be improved while developing this app further:
 
 The task was quite big in scope. I worked with tree data structures before so manipulating such data was not very difficult but it required to be really focused and it was more difficult when working during after-work hours. The tasks were well explained.
 
-I have developed and tested first 3 user stories. I haven't finished development of the 4th user story, additional time would be needed to debug it with real data (the computations work with mocked data, but not with the real data at the moment).
+I spent 9 hours developing ant testing this story.

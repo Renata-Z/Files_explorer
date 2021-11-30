@@ -5,28 +5,12 @@ import { FolderPreviewButton } from './FolderPreviewButton';
 
 interface Props {
   file: FileModel | null;
-  path: string[] | null;
   onFileClick: (id: string) => void;
 }
 
-export const FilesExplorerMainContent = ({
-  file,
-  path,
-  onFileClick,
-}: Props) => {
+export const FilesExplorerMainContent = ({ file, onFileClick }: Props) => {
   if (!file) {
     return <p>Welcome</p>;
-  }
-
-  if (path) {
-    return (
-      <p>
-        Path:{' '}
-        {path.map((x) => (
-          <span key={x}>{x} / </span>
-        ))}
-      </p>
-    );
   }
 
   if (file.type !== 'folder') {
