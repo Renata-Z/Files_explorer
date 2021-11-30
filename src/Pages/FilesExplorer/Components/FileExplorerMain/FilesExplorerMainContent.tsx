@@ -23,7 +23,7 @@ export const FilesExplorerMainContent = ({
       <p>
         Path:{' '}
         {path.map((x) => (
-          <span>{x} / </span>
+          <span key={x}>{x} / </span>
         ))}
       </p>
     );
