@@ -95,9 +95,10 @@ What could be improved while developing this app further:
 - At the moment, not much styling was needed, but if the app would be expanding, implementing CSS modules or /and CSS preprocessors would help to keep styles more readable.
 - Implement loading and error handling;
 - Keep information about active file/folder in React context, especialy if the app expands.
+- Investigate edge cases in expanding path if it works not as expected, might be better to compute a path to the file and set each folder in this path expanded in handleExpandPath() event;
 - Implement generic pipe function.
 - Side bar styling - the space for the name of the item should be limited length whith limited number of lines, if the name is longer - tooltip is shown and the name's overflow is hidden ("long nam...");
 
 The task was quite big in scope. I worked with tree data structures before so manipulating such data was not very difficult but it required to be really focused and it was more difficult when working during after-work hours. The tasks were well explained.
 
-I spent 9 hours developing ant testing this story.
+I spent 9 hours developing this story.

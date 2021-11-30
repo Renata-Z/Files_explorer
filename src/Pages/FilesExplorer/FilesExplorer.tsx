@@ -36,12 +36,12 @@ export const FilesExplorer = () => {
     return flattenedFiles[activeFileId];
   };
 
-  const handleItemClick = (id: string) => {
+  const handleSideBarItemClick = (id: string) => {
     setExpandedFiles((prevState) => ({ ...prevState, [id]: !prevState[id] }));
     setActiveFileId(id);
   };
 
-  const handleShowPath = (id: string) => {
+  const handleExpandPath = (id: string) => {
     setExpandedFiles((prevState) => ({ ...prevState, [id]: true }));
     setActiveFileId(id);
   };
@@ -51,11 +51,11 @@ export const FilesExplorer = () => {
       <SideBar
         files={groupedSortedFiles(files)}
         expandedFiles={expandedFiles}
-        onItemClick={handleItemClick}
+        onItemClick={handleSideBarItemClick}
       />
       <FilesExplorerMain
         file={getContentFiles()}
-        onFileClick={handleShowPath}
+        onFileClick={handleExpandPath}
       />
     </div>
   );

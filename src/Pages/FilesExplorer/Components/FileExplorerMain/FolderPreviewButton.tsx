@@ -10,7 +10,11 @@ interface Props {
 
 export const FolderPreviewButton = ({ id, name, type, onFileClick }: Props) => {
   return (
-    <button className="file-button" onClick={() => onFileClick(id)}>
+    <button
+      className="file-button"
+      title={name}
+      onClick={() => onFileClick(id)}
+    >
       {type === 'folder' ? (
         <div className="folder-icon" />
       ) : (

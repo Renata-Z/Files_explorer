@@ -8,7 +8,7 @@ interface Props {
 
 export const FilePreview = ({ name, type }: Props) => {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <div style={{ display: 'flex', flexDirection: 'column' }} title={name}>
       <p>name: {name}</p>
       <p>type: {type}</p>
     </div>
