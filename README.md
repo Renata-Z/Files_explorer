@@ -1,4 +1,4 @@
-# Corti Frontend Home Assignment
+# Frontend Home Assignment
 
 Take all the time that you need to complete the assignment. We expect to see all the user stories fulfilled. Although there is no strict maximum, we do not expect you to spend more than 1 day on this.
 
