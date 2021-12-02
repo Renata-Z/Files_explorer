@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FilesExplorerMain } from './Components/FileExplorerMain/FilesExplorerMain';
 import { SideBar } from './Components/SideBar/SideBar';
 import { FileModel, FilesDto, groupedSortedFiles } from './model/filesGrouping';
-import { flattenFiles } from './model/flattening';
+import { flattenFiles, getParentFoldersPath } from './model/flattening';
 
 export const FilesExplorer = () => {
   const [files, setFiles] = useState<FileModel[] | null>(null);
@@ -42,7 +42,10 @@ export const FilesExplorer = () => {
   };
 
   const handleExpandPath = (id: string) => {
-    setExpandedFiles((prevState) => ({ ...prevState, [id]: true }));
+    const parentFoldersPath = getParentFoldersPath(files, id);
+    parentFoldersPath.forEach((x) => {
+      setExpandedFiles((prevState) => ({ ...prevState, [id]: true }));
+    });
     setActiveFileId(id);
   };
 
