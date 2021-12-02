@@ -42,9 +42,9 @@ export const FilesExplorer = () => {
   };
 
   const handleExpandPath = (id: string) => {
-    const parentFoldersPath = getParentFoldersPath(files, id);
+    const parentFoldersPath = [...getParentFoldersPath(files, id), id];
     parentFoldersPath.forEach((x) => {
-      setExpandedFiles((prevState) => ({ ...prevState, [id]: true }));
+      setExpandedFiles((prevState) => ({ ...prevState, [x]: true }));
     });
     setActiveFileId(id);
   };

@@ -49,8 +49,8 @@ const getParentFolderPath = (
     return result;
   }
 
-  const { parentId, parentName } = parent;
-  return getParentFolderPath(parentId, [parentName, ...result], parentsInfo);
+  const { parentId } = parent;
+  return getParentFolderPath(parentId, [parentId, ...result], parentsInfo);
 };
 
 export const getParentFoldersPath = (data: FileModel[], personId: string) => {
