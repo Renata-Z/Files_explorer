@@ -20,6 +20,7 @@ export const FilesExplorerMainContent = ({ file, onFileClick }: Props) => {
   if (file.children?.length === 0) {
     return <p>This folder is empty</p>;
   }
+
   return (
     <>
       {file.children?.map((x) => (
