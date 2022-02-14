@@ -90,7 +90,6 @@ Encountered errors:
 
 What could be improved while developing this app further:
 
-- Memoize flattened files, so that it doesn't recompute after each re-render.
 - Implement Prettier / Eslint;
 - At the moment, not much styling was needed, but if the app would be expanding, implementing CSS modules or /and CSS preprocessors would help to keep styles more readable.
 - Implement loading and error handling;
@@ -98,5 +97,3 @@ What could be improved while developing this app further:
 - Implement generic pipe function.
 - Side bar styling - the space for the name of the item should be limited length whith limited number of lines, if the name is longer - tooltip is shown and the name's overflow is hidden ("long nam...");
 - unit tests;
-
-I spent 11 hours developing this task.

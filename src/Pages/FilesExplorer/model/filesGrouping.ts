@@ -13,28 +13,21 @@ export interface FilesDto {
   response: FileModel[];
 }
 
-export interface KeyStringValueBoolean {
-  [key: string]: boolean;
-}
+const compareFileTypes = (typeA: FileType, typeB: FileType): number => {
+  if (typeA === 'folder') {
+    return -1;
+  }
+  if (typeB !== 'folder') {
+    return -1;
+  }
+  return 0;
+};
 
-const sortFiles = (files: FileModel[]): FileModel[] =>
+export const sortFiles = (files: FileModel[]): FileModel[] =>
   [...files]
     .sort((a, b) => caseInsensitiveCompare(a.name, b.name))
+    .sort((a, b) => compareFileTypes(a.type, b.type))
     .map((x) => ({
       ...x,
       children: x.children ? sortFiles(x.children) : undefined,
     }));
-
-const groupFilesFolders = (files: FileModel[]): FileModel[] => {
-  const foldersGroup = files.filter((x) => x.type === 'folder');
-  const filesGroup = files.filter((x) => x.type !== 'folder');
-
-  return [...foldersGroup, ...filesGroup].map((x) => ({
-    ...x,
-    children:
-      x.children && x.children.length ? groupFilesFolders(x.children) : [],
-  }));
-};
-
-export const groupedSortedFiles = (files: FileModel[]) =>
-  groupFilesFolders(sortFiles(files));
