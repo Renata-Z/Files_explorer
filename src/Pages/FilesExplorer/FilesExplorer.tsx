@@ -1,59 +1,65 @@
-import axios, { AxiosResponse } from 'axios';
 import React, { useEffect, useState } from 'react';
+import axios, { AxiosResponse } from 'axios';
 import { FilesExplorerMain } from './Components/FileExplorerMain/FilesExplorerMain';
 import { SideBar } from './Components/SideBar/SideBar';
-import { FileModel, FilesDto, groupedSortedFiles } from './model/filesGrouping';
+import { FileModel, FilesDto, sortFiles } from './model/filesGrouping';
 import { flattenFiles, getParentFoldersPath } from './model/flattening';
 
 export const FilesExplorer = () => {
-  const [files, setFiles] = useState<FileModel[] | null>(null);
-  const [expandedFiles, setExpandedFiles] = useState<Record<string, boolean>>(
-    {}
+  const [fileSystemData, setFileSystemData] = useState<FileModel[] | null>(
+    null
   );
-  const [activeFileId, setActiveFileId] = useState<string | null>(null);
+  const [expandedFilesFolders, setExpandedFilesFolders] = useState<
+    Record<string, boolean>
+  >({});
+  const [activeFileFolderId, setActiveFileFolderId] = useState<string | null>(
+    null
+  );
 
   useEffect(() => {
     const url = '/api/v1/tree';
-    try {
-      axios.get(url).then((response: AxiosResponse<FilesDto>) => {
+    axios
+      .get(url)
+      .then((response: AxiosResponse<FilesDto>) => {
         const { data } = response;
-        setFiles(data.response);
-      });
-    } catch (e) {
-      console.error('Something went wrong', e);
-    }
+        setFileSystemData(data.response);
+      })
+      .catch((e) => console.log(e));
   }, []);
 
-  if (!files) {
+  if (!fileSystemData) {
     return <p>LOADING............</p>;
   }
 
   const getContentFiles = () => {
-    if (!activeFileId) {
+    if (!activeFileFolderId) {
       return null;
     }
-    const flattenedFiles = flattenFiles(groupedSortedFiles(files), {});
-    return flattenedFiles[activeFileId];
+    const flattenedFiles = flattenFiles(sortFiles(fileSystemData), {});
+    return flattenedFiles[activeFileFolderId];
   };
 
   const handleSideBarItemClick = (id: string) => {
-    setExpandedFiles((prevState) => ({ ...prevState, [id]: !prevState[id] }));
-    setActiveFileId(id);
+    setExpandedFilesFolders((prevState) => ({
+      ...prevState,
+      [id]: !prevState[id],
+    }));
+    setActiveFileFolderId(id);
   };
 
   const handleExpandPath = (id: string) => {
-    const parentFoldersPath = [...getParentFoldersPath(files, id), id];
+    const parentFoldersPath = [...getParentFoldersPath(fileSystemData, id), id];
     parentFoldersPath.forEach((x) => {
-      setExpandedFiles((prevState) => ({ ...prevState, [x]: true }));
+      setExpandedFilesFolders((prevState) => ({ ...prevState, [x]: true }));
     });
-    setActiveFileId(id);
+    setActiveFileFolderId(id);
   };
 
   return (
     <div className="files-explorer">
       <SideBar
-        files={groupedSortedFiles(files)}
-        expandedFiles={expandedFiles}
+        files={sortFiles(fileSystemData)}
+        expandedFiles={expandedFilesFolders}
         onItemClick={handleSideBarItemClick}
       />
       <FilesExplorerMain

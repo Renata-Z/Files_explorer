@@ -1,6 +1,5 @@
 import React from 'react';
 import { FileModel } from '../../model/filesGrouping';
-import { FilePreview } from './FilePreview';
 import { FilesExplorerMainContent } from './FilesExplorerMainContent';
 
 interface Props {
