@@ -18,7 +18,7 @@ const compareFileTypes = (typeA: FileType, typeB: FileType): number => {
     return -1;
   }
   if (typeB !== 'folder') {
-    return -1;
+    return 1;
   }
   return 0;
 };
